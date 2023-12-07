@@ -60,6 +60,7 @@
       }
     ],
     "win": {
+      "target": "msi",
       "icon": "public/icon.ico"
     },
     "files": [
