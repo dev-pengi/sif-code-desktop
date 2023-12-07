@@ -1,21 +1,76 @@
 {
-  "name": "electron-app",
+  "name": "sif-code",
+  "author": {
+    "name": "sifedine",
+    "url": "https://sifedine.com",
+    "email": "siffffdoul@gmail.com"
+  },
+  "description": "web development made simple, with sif code",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@electron/remote": "^2.1.0",
+    "@monaco-editor/react": "^4.6.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.2",
+    "electron-is-dev": "^2.0.0",
+    "emmet-monaco-es": "^5.3.0",
+    "file-saver": "^2.0.5",
+    "framer-motion": "^10.16.14",
+    "jszip": "^3.10.1",
+    "less": "^4.2.0",
+    "lodash": "^4.17.21",
+    "monaco-editor": "^0.44.0",
+    "prettier": "^3.1.0",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-contexify": "^6.0.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.20.1",
     "react-scripts": "5.0.1",
+    "react-tooltip": "^5.25.0",
+    "sass": "^1.69.5",
+    "snowflake-uid": "^2.1.1",
+    "wait-on": "^7.2.0",
     "web-vitals": "^2.1.4"
   },
+  "main": "public/main.js",
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
+    "electron:start": "wait-on tcp:3000 && electron ."
+  },
+  "build": {
+    "extends": null,
+    "appId": "com.example.electron-cra",
+    "fileAssociations": [
+      {
+        "ext": "sif",
+        "name": "SIF File",
+        "role": "Editor",
+        "icon": "public/icon.ico"
+      }
+    ],
+    "win": {
+      "icon": "public/icon.ico"
+    },
+    "files": [
+      "dist/**/*",
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +89,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
   }
 }
