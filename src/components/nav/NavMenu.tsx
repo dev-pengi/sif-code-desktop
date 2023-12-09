@@ -70,6 +70,7 @@ const NavMenu: FC<NavMenuProps> = ({
         onClick={showOnclick ? displayMenu : () => {}}
         onDoubleClick={showOnDoubleClick ? displayMenu : () => {}}
         onContextMenu={showOnContextMenu ? displayMenu : () => {}}
+        className="h-full flex items-center justify-center"
       >
         {children}
       </div>
@@ -121,76 +122,13 @@ const NavMenu: FC<NavMenuProps> = ({
             </Item>
           </Submenu>
         )}
-        <Separator />
+        {/* <Separator /> */}
         <Item onClick={openShortcuts}>
           <div className="w-[25px]">
             <assets.ShortcutIcon />
           </div>
           <span className="ml-[10px]">keyboard shortcuts</span>
         </Item>
-
-        <Separator />
-
-        <Item>
-          <a
-            href="https://github.com/dev-pengi/sif-code"
-            target="_blank"
-            className="w-full h-full flex items-center"
-          >
-            <div className="w-[25px]">
-              <assets.GithubIcon />
-            </div>
-            <span className="ml-[10px]">github project</span>
-          </a>
-        </Item>
-
-        {smallScreen ? (
-          <>
-            <Separator />
-            {moreProjects.map((project, index: number) => (
-              <Item key={index}>
-                <a
-                  href={`https://${project.link}`}
-                  target="_blank"
-                  className="w-full h-full flex items-center"
-                >
-                  <div className="w-[25px]">
-                    <assets.ExternalIcon />
-                  </div>
-                  <span className="ml-[10px]">{project.name}</span>
-                </a>
-              </Item>
-            ))}
-          </>
-        ) : (
-          <Submenu
-            label={
-              <>
-                <img
-                  src={assets.devIcon}
-                  alt={`creator portfolio`}
-                  width={25}
-                  className="min-w-[25px]"
-                />
-                <span className="ml-[10px]">more projects</span>
-              </>
-            }
-          >
-            {moreProjects.map((project, index: number) => (
-              <Item key={index}>
-                <a
-                  href={`https://${project.link}`}
-                  className="w-full h-full flex items-center"
-                >
-                  <div className="w-[25px]">
-                    <assets.ExternalIcon />
-                  </div>
-                  <span className="ml-[10px]">{project.name}</span>
-                </a>
-              </Item>
-            ))}
-          </Submenu>
-        )}
 
         <Separator />
 

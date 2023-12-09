@@ -26,12 +26,16 @@ import ColoredLessIcon from "./ColoredLessIcon";
 import ColoredJsIcon from "./ColoredJsIcon";
 import ColoredJsonIcon from "./ColoredJsonIcon";
 import PlayIcon from "./PlayIcon";
+import MaximizeIcon from "./MaximizeIcon";
+import MinimizeIcon from "./MinimizeIcon";
 
 export {
   downloadIcon,
   ExportIcon,
   ThemeIcon,
   RotateIcon,
+  MaximizeIcon,
+  MinimizeIcon,
   devIcon,
   plusIcon,
   CloseIcon,
@@ -52,6 +56,8 @@ export {
   ColoredHtmlIcon,
   ColoredCssIcon,
   ColoredScssIcon,
-  ColoredLessIcon,ColoredJsIcon,
-  ColoredJsonIcon,PlayIcon
+  ColoredLessIcon,
+  ColoredJsIcon,
+  ColoredJsonIcon,
+  PlayIcon,
 };

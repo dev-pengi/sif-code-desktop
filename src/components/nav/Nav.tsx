@@ -2,16 +2,12 @@
 import { useCodeContext } from "../../contexts/CodeContext";
 import { FC } from "react";
 import NavButton from "./NavButton";
-import {
-  RotateIcon,
-  ReverseIcon,
-  ExportIcon,
-  MenuIcon,
-} from "../../assets";
+import { RotateIcon, ReverseIcon, ExportIcon, MenuIcon } from "../../assets";
 import SizeIndicator from "./SizeIndicator";
 import DownloadMenu from "./ExportMenu";
 import ProjectName from "./ProjectName";
 import NavMenu from "./NavMenu";
+import WindowAction from "./WindowAction";
 
 const Nav: FC = () => {
   const { setTheme, setSwitchedView, setReversedView, smallScreen } =
@@ -26,9 +22,12 @@ const Nav: FC = () => {
   return (
     <nav
       className={`z-10 bg-main fixed left-0 top-0 w-screen h-navD px-6`}
+      id="navbar"
     >
       <div className={`flex items-center h-full w-full`}>
-        <div className={`flex gap-4 flex-row flex-1 items-center justify-start`}>
+        <div
+          className={`flex gap-4 flex-row flex-1 items-center justify-start h-full`}
+        >
           <NavMenu showOnContextMenu showOnclick>
             <NavButton Icon={MenuIcon} tooltip="info" id={"info"} />
           </NavMenu>
@@ -54,12 +53,8 @@ const Nav: FC = () => {
             onClick={handleReverseView}
           />
         </div>
-            <ProjectName />
-        {!smallScreen && (
-          <>
-            <SizeIndicator />
-          </>
-        )}
+        <ProjectName />
+        <WindowAction />
       </div>
     </nav>
   );

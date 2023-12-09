@@ -178,6 +178,7 @@ const DownloadMenu: FC<DownloadMenuProps> = ({
         onClick={showOnclick ? displayMenu : () => {}}
         onDoubleClick={showOnDoubleClick ? displayMenu : () => {}}
         onContextMenu={showOnContextMenu ? displayMenu : () => {}}
+        className="h-full flex items-center justify-center"
       >
         {children}
       </div>
@@ -213,13 +214,6 @@ const DownloadMenu: FC<DownloadMenuProps> = ({
           <span className="ml-[10px]">
             <span>Export as</span> <span className="font-bold ml-1"> .sif</span>
           </span>
-        </Item>
-        <Separator />
-        <Item onClick={handleProjectShare}>
-          <div className="w-[25px]">
-            <ShareIcon />
-          </div>
-          <span className="ml-[10px]">Share Project Link</span>
         </Item>
       </Menu>
       <input

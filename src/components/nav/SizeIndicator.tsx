@@ -4,8 +4,10 @@ import { FC } from "react";
 const SizeIndicator: FC = () => {
   const { previewWidth, previewHeight } = useCodeContext();
   return (
-    <p className="flex-1 items-end text-end text-white min-w-max">
-          {previewWidth} x {previewHeight}
+    <p className="flex-1 flex justify-end text-end text-white min-w-max">
+      <span className="w-max no-drag-nav">
+        {previewWidth} x {previewHeight}
+      </span>
     </p>
   );
 };
