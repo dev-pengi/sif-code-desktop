@@ -11,11 +11,13 @@
   "dependencies": {
     "@electron/remote": "^2.1.0",
     "@monaco-editor/react": "^4.6.0",
+    "@radix-ui/themes": "^2.0.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.2",
     "electron-is-dev": "^2.0.0",
+    "electron-updater": "^6.1.7",
     "emmet-monaco-es": "^5.3.0",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.16.14",

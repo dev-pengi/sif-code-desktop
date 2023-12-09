@@ -317,21 +317,6 @@ document.addEventListener("click", () => {
 
 `;
 
-const moreProjects = [
-  {
-    name: "css path-clip",
-    link: "clip.sifedine.com",
-  },
-  {
-    name: "blob generator",
-    link: "blob.sifedine.com",
-  },
-  {
-    name: "dev portfolio",
-    link: "sifedine.com",
-  },
-];
-
 export {
   initialFiles,
   initialCodes,
@@ -339,7 +324,6 @@ export {
   ConfirmationModalStyles,
   keyboardShortcuts,
   iframeSetUp,
-  moreProjects,
   snowflake,
 };
 export type { File, FileType };

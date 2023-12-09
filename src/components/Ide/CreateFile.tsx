@@ -1,10 +1,7 @@
-
-
-import * as assets from "../../assets";
-import { toast } from "react-hot-toast";
 import { FC } from "react";
 import CreateFileMenu from "./CreateFileMenu";
 import { useCodeContext } from "../../contexts/CodeContext";
+import { PlusIcon } from "../../assets";
 
 const CreateFile: FC = () => {
   const { theme } = useCodeContext();
@@ -17,12 +14,14 @@ const CreateFile: FC = () => {
             background: theme === "dark" ? "#1f1f1f" : "#ffffff",
           }}
         >
-          <img
-            src={assets.plusIcon}
-            alt="plus icon"
-            width={18}
-            className="min-w-[18px]"
-          />
+          <div
+            className="w-[18px]"
+            style={{
+              color: theme === "dark" ? "#ffffff" : "#383838",
+            }}
+          >
+            <PlusIcon />
+          </div>
         </button>
         {/* <div className="w-[50px] h-full bg-transparent"></div> */}
       </CreateFileMenu>

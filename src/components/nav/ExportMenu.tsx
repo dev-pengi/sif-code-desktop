@@ -143,36 +143,6 @@ const DownloadMenu: FC<DownloadMenuProps> = ({
     });
   };
 
-  const generateProjectLink = async () => {
-    const TOKEN =
-      "e9bcf8e75f1cdcca89c815aab5e656a6190832a3b87af5e1accefbc63a69061340e3f5d98860ef4e7dd7fef1f012b6ab4782045d4a13c724dd9534fda84a6c63";
-    const headers = {
-      "content-type": " text/plain",
-      Authorization: `Bearer ${TOKEN}`,
-    };
-    const endpoint = "https://hastebin.com/documents";
-    const projectData = convertToBinary(files, projectName);
-
-    let { data } = await axios.post(endpoint, projectData, {
-      headers,
-    });
-    if (typeof window !== "undefined") {
-      const hostname = window.location.hostname;
-      const projectURL = `${window.location.protocol}//${hostname}${
-        window.location.port ? `:${window.location.port}` : ""
-      }/?import=${data.key}`;
-      copyText(projectURL);
-    }
-  };
-
-  const handleProjectShare = async () => {
-    toast.promise(generateProjectLink(), {
-      loading: "Uploading the project...",
-      success: <>Project link has been copied to clipboard!</>,
-      error: <>Error while uploading the project!.</>,
-    });
-  };
-
   return (
     <>
       <div

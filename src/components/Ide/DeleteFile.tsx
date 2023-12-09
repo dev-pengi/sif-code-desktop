@@ -1,5 +1,3 @@
-
-
 import * as assets from "../../assets";
 import { toast } from "react-hot-toast";
 import { FC, useEffect, useState } from "react";
@@ -91,7 +89,12 @@ const DeleteFile: FC<ComponentProps> = ({ filename }) => {
         onClick={openModal}
         className={`ml-[10px] h-max p-1 delete-button rounded-sm`}
       >
-        <div className="w-[18px] text-white">
+        <div
+          className="w-[18px] text-white"
+          style={{
+            color: theme === "dark" ? "#ffffff" : "#383838",
+          }}
+        >
           <assets.CloseIcon />
         </div>
       </button>

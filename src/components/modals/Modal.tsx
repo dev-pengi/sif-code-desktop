@@ -33,7 +33,6 @@ const Modal: FC<ModalProps> = ({
   const [rootElement, setRootElement] = useState<any>(null);
 
   useEffect(() => {
-    if (typeof document === "undefined") return;
     const root = document.getElementById("root");
     setRootElement(root);
   }, []);

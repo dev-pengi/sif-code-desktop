@@ -1,4 +1,6 @@
 const { app, BrowserWindow, Menu, ipcMain, shell } = require("electron");
+const { autoUpdater } = require("electron-updater");
+
 require("@electron/remote/main").initialize();
 
 const path = require("path");
@@ -20,6 +22,7 @@ function createWindow() {
     },
   });
 
+  autoUpdater.checkForUpdatesAndNotify();
   win.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
     return { action: "deny" };

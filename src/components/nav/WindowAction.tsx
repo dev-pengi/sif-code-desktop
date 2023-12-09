@@ -14,7 +14,7 @@ const WindowAction: FC = () => {
     ipcRenderer.send("minimize");
   };
   return (
-    <div className="flex-1 flex gap-4 flex-row items-center justify-end h-full">
+    <div className="flex-1 flex gap-2 flex-row items-center justify-end h-full">
       <NavButton
         Icon={MinimizeIcon}
         onClick={handleWinMinimize}

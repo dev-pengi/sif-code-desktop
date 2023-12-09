@@ -12,6 +12,9 @@ import ShortcutGuid from "./ShortcutsGuide";
 import { initialFiles } from "../../constants";
 import { useCodeContext } from "../../contexts/CodeContext";
 import { useFilesContext } from "../../contexts/FilesContext";
+
+const { ipcRenderer } = window.require("electron");
+
 const MENU_ID = "info-menu";
 
 interface NavMenuProps {
@@ -56,9 +59,10 @@ const NavMenu: FC<NavMenuProps> = ({
   const handleReset = () => {
     setFiles(initialFiles);
     setProjectName("My New Project");
-    if (typeof window !== "undefined") {
-      window.history.replaceState(null, "", "/");
-    }
+  };
+
+  const handleUpdateCheck = () => {
+    ipcRenderer.send("check-update");
   };
 
   const handleRecompile = () => {
@@ -132,6 +136,13 @@ const NavMenu: FC<NavMenuProps> = ({
 
         <Separator />
 
+        <Item onClick={handleUpdateCheck}>
+          <div className="w-[25px]">
+            <assets.UpdateIcon />
+          </div>
+          <span className="ml-[10px]">Check for updates</span>
+        </Item>
+        <Separator />
         <Item onClick={handleReset} className="danger">
           <div className="w-[25px]">
             <assets.DeleteIcon />

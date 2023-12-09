@@ -259,7 +259,10 @@ const FileTab: FC<FileTabProps> = ({ file, index }) => {
                   onClick={handleRename}
                   className={`ml-[10px] h-max p-1 tab-button rounded-sm`}
                 >
-                  <div className="w-[18px]">
+                  <div className="w-[18px]" 
+              style={{
+                color: theme === "dark" ? "#ffffff" : "#383838",
+              }}>
                     <Assets.CheckIcon />
                   </div>
                 </button>
@@ -267,7 +270,12 @@ const FileTab: FC<FileTabProps> = ({ file, index }) => {
                   onClick={handleCancel}
                   className={`ml-[5px] h-max p-1 tab-button rounded-sm`}
                 >
-                  <div className="w-[18px]">
+                  <div
+                    className="w-[18px]"
+                    style={{
+                      color: theme === "dark" ? "#ffffff" : "#383838",
+                    }}
+                  >
                     <Assets.CloseIcon />
                   </div>
                 </button>

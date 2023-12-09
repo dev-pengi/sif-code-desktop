@@ -1,16 +1,13 @@
-import downloadIcon from "./download.svg";
 import ExportIcon from "./ExportIcon";
 import ThemeIcon from "./ThemeIcon";
 import RotateIcon from "./RotateIcon";
-import devIcon from "./dev.svg";
-import plusIcon from "./plus.svg";
+import PlusIcon from "./PlusIcon";
 import CloseIcon from "./CloseIcon";
 import ShortcutIcon from "./ShortcutIcon";
 import ReverseIcon from "./ReverseIcon";
 import CheckIcon from "./CheckIcon";
 import InfoIcon from "./InfoIcon";
 import GithubIcon from "./GithubIcon";
-import portfolioIcon from "./portfolio.png";
 import FilesIcon from "./FilesIcon";
 import ZipIcon from "./ZipIcon";
 import HtmlIcon from "./HtmlIcon";
@@ -28,23 +25,21 @@ import ColoredJsonIcon from "./ColoredJsonIcon";
 import PlayIcon from "./PlayIcon";
 import MaximizeIcon from "./MaximizeIcon";
 import MinimizeIcon from "./MinimizeIcon";
+import UpdateIcon from "./UpdateIcon";
 
 export {
-  downloadIcon,
   ExportIcon,
   ThemeIcon,
   RotateIcon,
   MaximizeIcon,
   MinimizeIcon,
-  devIcon,
-  plusIcon,
+  PlusIcon,
   CloseIcon,
   ShortcutIcon,
   ReverseIcon,
   CheckIcon,
   InfoIcon,
   GithubIcon,
-  portfolioIcon,
   FilesIcon,
   ZipIcon,
   HtmlIcon,
@@ -60,4 +55,5 @@ export {
   ColoredJsIcon,
   ColoredJsonIcon,
   PlayIcon,
+  UpdateIcon,
 };
