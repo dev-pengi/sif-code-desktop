@@ -11,6 +11,7 @@ module.exports = {
         primary: "#3498db",
         main: "#212529",
         "main-lighter": "#2d3338",
+        "main-danger": "#e63737",
         "dark-tab": "#181818",
         "dark-active-tab": "#1f1f1f",
         "light-tab": "#f8f8f8",
@@ -18,7 +19,7 @@ module.exports = {
         dark: "#343436",
       },
       spacing: {
-        navD: "60px",
+        navD: "50px",
       },
       boxShadow: {
         headerShadow: "rgba(0, 0, 0, 0.03) 0px 10px 50px",
