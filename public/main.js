@@ -6,8 +6,11 @@ const isDev = require("electron-is-dev");
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
-    height: 800,
+    width: 900,
+    height: 750,
+    minWidth: 900,
+    minHeight: 650,
+    titleBarStyle: "hidden",
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -50,6 +53,19 @@ function createWindow() {
       event.sender.send("file-path", filePath);
     });
   }
+
+  ipcMain.on("close", () => {
+    win.close();
+  });
+
+  ipcMain.on("minimize", () => {
+    win.minimize();
+  });
+
+  ipcMain.on("maximize", () => {
+    if (win.isMaximized()) win.unmaximize();
+    else win.maximize();
+  });
 }
 
 app.on("ready", createWindow);
