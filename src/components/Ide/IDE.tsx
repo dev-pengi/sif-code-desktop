@@ -5,7 +5,7 @@ import Editor from "./Editor";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useCodeContext } from "../../contexts/CodeContext";
 import { useFilesContext } from "../../contexts/FilesContext";
-import {  } from "../../constants";
+import {} from "../../constants";
 
 const IDE: FC = () => {
   const {
@@ -17,7 +17,7 @@ const IDE: FC = () => {
     isHorizontal,
     reversedView,
   } = useCodeContext();
-  const { files, setFiles } = useFilesContext();
+  const { setFiles } = useFilesContext();
   const [isDragging, setIsDragging] = useState(false);
 
   function MoveArrayItem(arr: any[], oldIndex: number, newIndex: number) {

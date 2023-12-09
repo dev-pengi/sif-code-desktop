@@ -9,7 +9,7 @@ import {
   Submenu,
 } from "react-contexify";
 import ShortcutGuid from "./ShortcutsGuide";
-import { initialFiles, moreProjects } from "../../constants";
+import { initialFiles } from "../../constants";
 import { useCodeContext } from "../../contexts/CodeContext";
 import { useFilesContext } from "../../contexts/FilesContext";
 const MENU_ID = "info-menu";

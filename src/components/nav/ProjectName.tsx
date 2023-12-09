@@ -1,4 +1,5 @@
-"use client";
+
+
 import { useCodeContext } from "../../contexts/CodeContext";
 import { useFilesContext } from "../../contexts/FilesContext";
 import { FC, useEffect, useRef, useState } from "react";

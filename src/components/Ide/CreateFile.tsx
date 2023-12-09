@@ -1,4 +1,5 @@
-"use client";
+
+
 import * as assets from "../../assets";
 import { toast } from "react-hot-toast";
 import { FC } from "react";

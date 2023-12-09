@@ -1,4 +1,5 @@
-"use client";
+
+
 import { FilesIcon, HtmlIcon, ShareIcon, SifFileIcon, ZipIcon } from "../../assets";
 import {
   downloadFilesAsZip,

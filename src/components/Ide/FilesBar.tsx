@@ -1,4 +1,5 @@
-"use client";
+
+
 import { FC, useEffect, useRef } from "react";
 import CreateFile from "./CreateFile";
 import FileTab from "./FileTab";

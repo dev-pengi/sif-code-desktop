@@ -1,4 +1,5 @@
-"use client";
+
+
 import * as assets from "../../assets";
 import Image from "next/image";
 import { FC, useEffect } from "react";

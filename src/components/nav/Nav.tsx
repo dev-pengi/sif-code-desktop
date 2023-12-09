@@ -1,17 +1,14 @@
-"use client";
 import { useCodeContext } from "../../contexts/CodeContext";
 import { FC } from "react";
 import NavButton from "./NavButton";
 import { RotateIcon, ReverseIcon, ExportIcon, MenuIcon } from "../../assets";
-import SizeIndicator from "./SizeIndicator";
 import DownloadMenu from "./ExportMenu";
 import ProjectName from "./ProjectName";
 import NavMenu from "./NavMenu";
 import WindowAction from "./WindowAction";
 
 const Nav: FC = () => {
-  const { setTheme, setSwitchedView, setReversedView, smallScreen } =
-    useCodeContext();
+  const { setSwitchedView, setReversedView, smallScreen } = useCodeContext();
   const handleToggleView = () => {
     setSwitchedView((prev) => !prev);
   };
@@ -34,7 +31,7 @@ const Nav: FC = () => {
           <DownloadMenu showOnContextMenu showOnclick>
             <NavButton
               Icon={ExportIcon}
-              tooltip="Export or Share"
+              tooltip="Export Project"
               id={"export"}
             />
           </DownloadMenu>
