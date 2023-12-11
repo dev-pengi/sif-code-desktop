@@ -52,7 +52,7 @@
   "build": {
     "productName": "Sif Code",
     "extends": null,
-    "appId": "com.example.electron-cra",
+    "appId": "com.sifedine.code",
     "fileAssociations": [
       {
         "ext": "sif",
