@@ -28,8 +28,7 @@ function createWindow() {
     private: false,
   });
 
-  // let updateWin;
-  ipcMain.on("check-update", (event) => {
+  const checkForUpdates = (isFirst = false) => {
     let updateWin = new BrowserWindow({
       width: 350,
       height: 350,
@@ -47,16 +46,15 @@ function createWindow() {
 
     const updaterURL = `file://${path.join(__dirname, "./updater/index.html")}`;
     updateWin.loadURL(updaterURL);
-    autoUpdater.checkForUpdates();
 
     ipcMain.on("request-update-info", (event) => {
+      autoUpdater.checkForUpdates();
       autoUpdater.on("update-available", (info) => {
         event.sender.send("update-available", info);
       });
       autoUpdater.on("update-not-available", (info) => {
         event.sender.send("update-not-available", info);
       });
-
       autoUpdater.on("update-downloaded", (info) => {
         event.sender.send("update-downloaded", info);
       });
@@ -71,6 +69,15 @@ function createWindow() {
     ipcMain.on("close-updater", () => {
       updateWin.close();
     });
+
+    ipcMain.on("update-close-app", () => {
+      updateWin.destroy();
+      win.destroy();
+    });
+  };
+  checkForUpdates();
+  ipcMain.on("check-update", (event) => {
+    checkForUpdates();
   });
 
   win.webContents.setWindowOpenHandler((details) => {

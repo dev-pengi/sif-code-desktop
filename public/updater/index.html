@@ -9,7 +9,7 @@
   <body>
     <div class="loader-container drag">
       <div class="pre-loader"></div>
-      <p class="update-info" id="update-info">Ch</p>
+      <p class="update-info" id="update-info">Checking for updates</p>
     </div>
 
     <script>
@@ -23,19 +23,26 @@
 
       ipcRenderer.send("request-update-info");
       ipcRenderer.on("update-available", (info) => {
-        setText(`Downloading Updates`);
+        setText(`Downloading Update`);
       });
       ipcRenderer.on("update-not-available", (info) => {
         setText(`Update Not Available`);
+        setTimeout(() => {
+          ipcRenderer.send("close-updater");
+        }, 1500);
       });
       ipcRenderer.on("update-downloaded", (info) => {
-        setText(`Updates Downloaded`);
+        setText(`Updates Downloaded, closing app in 3 seconds`);
+        ipcRenderer.send("update-close-app");
       });
       ipcRenderer.on("checking-for-update", (info) => {
-        setText(`Checking for updates`);
+        setText(`Checking for update`);
       });
       ipcRenderer.on("error", (error, message) => {
-        setText(`Error while auto updating`);
+        setText(`Update Not Available`);
+        setTimeout(() => {
+          ipcRenderer.send("close-updater");
+        }, 1500);
       });
     </script>
   </body>
