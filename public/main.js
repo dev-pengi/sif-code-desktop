@@ -49,20 +49,27 @@ function createWindow() {
 
     ipcMain.on("request-update-info", (event) => {
       autoUpdater.checkForUpdates();
-      autoUpdater.on("update-available", (info) => {
-        event.sender.send("update-available", info);
-      });
-      autoUpdater.on("update-not-available", (info) => {
-        event.sender.send("update-not-available", info);
-      });
-      autoUpdater.on("update-downloaded", (info) => {
-        event.sender.send("update-downloaded", info);
-      });
-      autoUpdater.on("checking-for-update", (info) => {
-        event.sender.send("checking-for-update", info);
-      });
-      autoUpdater.on("error", (error, message) => {
-        event.sender.send("error", error, message);
+      ipcMain.removeAllListeners("request-update-info");
+      ipcMain.removeAllListeners("close-updater");
+      ipcMain.removeAllListeners("update-close-app");
+
+      ipcMain.on("request-update-info", (event) => {
+        autoUpdater.checkForUpdates();
+        autoUpdater.on("update-available", (info) => {
+          event.sender.send("update-available", info);
+        });
+        autoUpdater.on("update-not-available", (info) => {
+          event.sender.send("update-not-available", info);
+        });
+        autoUpdater.on("update-downloaded", (info) => {
+          event.sender.send("update-downloaded", info);
+        });
+        autoUpdater.on("checking-for-update", (info) => {
+          event.sender.send("checking-for-update", info);
+        });
+        autoUpdater.on("error", (error, message) => {
+          event.sender.send("error", error, message);
+        });
       });
     });
 
