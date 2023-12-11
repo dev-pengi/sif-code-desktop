@@ -23,19 +23,19 @@
 
       ipcRenderer.send("request-update-info");
       ipcRenderer.on("update-available", (info) => {
-        setText(`Downloading Updates ${String(event)}`);
+        setText(`Downloading Updates`);
       });
       ipcRenderer.on("update-not-available", (info) => {
-        setText(`Downloading Not Available ${String(event)}`);
+        setText(`Update Not Available`);
       });
       ipcRenderer.on("update-downloaded", (info) => {
-        setText(`Updates Downloaded ${String(event)}`);
+        setText(`Updates Downloaded`);
       });
       ipcRenderer.on("checking-for-update", (info) => {
-        setText(`Checking for updates ${String(event)}`);
+        setText(`Checking for updates`);
       });
       ipcRenderer.on("error", (error, message) => {
-        setText(`Update error ${String(message)} ${String(error)}`);
+        setText(`Error while auto updating`);
       });
     </script>
   </body>
