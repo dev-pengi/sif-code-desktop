@@ -25,7 +25,7 @@ const NavButton: FC<NavButtonProps> = ({
   return (
     <>
       <button
-        className={`no-drag-nav bg-transparent text-white ${
+        className={`no-drag bg-transparent text-white ${
           isDanger ? "hover:bg-main-danger" : "hover:bg-main-lighter"
         } duration-75 rounded-md h-[70%] px-3 w-max flex justify-center items-center`}
         onClick={onClick}

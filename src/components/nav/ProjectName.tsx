@@ -103,7 +103,7 @@ const ProjectName: FC = () => {
       onClick={handleEditing}
       className={`${
         isEditing ? "" : `vsm:px-3 px-2 py-1 bg-main-lighter rounded-md`
-      } text-white vsm:mx-4 ml-2 text-center font-medium truncate cursor-pointer max-w-[300px] no-drag-nav`}
+      } text-white vsm:mx-4 ml-2 text-center font-medium truncate cursor-pointer max-w-[300px] no-drag`}
       ref={nameArea}
     >
       {isEditing ? (
