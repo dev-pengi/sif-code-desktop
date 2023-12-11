@@ -18,8 +18,7 @@ const Nav: FC = () => {
 
   return (
     <nav
-      className={`z-10 bg-main fixed left-0 top-0 w-screen h-navD px-6`}
-      id="navbar"
+      className={`drag z-10 fixed left-0 top-0 w-screen h-navD px-3`}
     >
       <div className={`flex items-center h-full w-full`}>
         <div
@@ -51,7 +50,7 @@ const Nav: FC = () => {
           />
         </div>
         <ProjectName />
-        <WindowAction />
+        {!smallScreen && <WindowAction />}
       </div>
     </nav>
   );

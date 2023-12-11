@@ -8,11 +8,10 @@ const isDev = require("electron-is-dev");
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 900,
-    height: 750,
-    minWidth: 900,
-    minHeight: 650,
+    width: 350,
+    height: 350,
     titleBarStyle: "hidden",
+    backgroundColor: "#212529",
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -22,7 +21,15 @@ function createWindow() {
     },
   });
 
+  autoUpdater.setFeedURL({
+    provider: "github",
+    repo: "sif-code-desktop",
+    owner: "dev-pengi",
+    private: false,
+  });
+
   autoUpdater.checkForUpdatesAndNotify();
+
   win.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
     return { action: "deny" };
@@ -40,6 +47,15 @@ function createWindow() {
   const currentURL = isDev ? "http://localhost:3000" : buildURL;
 
   win.loadURL(currentURL);
+
+  ipcMain.on("editor-loaded", (event, arg) => {
+    win.setSize(900, 650);
+    win.maximize();
+    win.setMinimumSize(700, 600);
+    setTimeout(() => event.sender.send("editor-loaded-finished"), 1000);
+  });
+
+  ipcMain.on("toggle-title-bar", (event, show) => {});
 
   // Handle open-file events in the production environment
   app.on("open-file", (event, filePath) => {

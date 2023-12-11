@@ -5,7 +5,9 @@ import {
   FC,
   ReactNode,
   useEffect,
+  useCallback,
 } from "react";
+const { ipcRenderer } = window.require("electron");
 
 interface CodeContextValue {
   pageWidth: number;
@@ -139,22 +141,29 @@ const CodeProvider: FC<CodeProviderProps> = ({ children }) => {
     }
   }, [pageWidth]);
 
+  const handleResize = useCallback(() => {
+    const mainElement = document.getElementById("main");
+    if (mainElement) {
+      const newPageWidth = mainElement.offsetWidth - 5;
+      const newPageHeight = mainElement.offsetHeight - 10;
+      setPageWidth(newPageWidth);
+      setPageHeight(mainElement.offsetHeight - 10);
+      setCodeWidth(newPageWidth / 2);
+      setCodeHeight(newPageHeight / 2);
+    }
+  }, []);
   useEffect(() => {
-    const handleResize = () => {
-      const mainElement = document.getElementById("main");
-      if (mainElement) {
-        setPageWidth(mainElement.offsetWidth - 5);
-        setPageHeight(mainElement.offsetHeight - 10);
-      }
-    };
-
-      window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize();
 
     return () => {
-        window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    ipcRenderer.send("toggle-title-bar", smallScreen);
+  }, [smallScreen]);
 
   useEffect(() => {
     setIsHorizontal(!switchedView);
