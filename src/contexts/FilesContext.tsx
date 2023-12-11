@@ -8,17 +8,12 @@ import {
   FC,
   ReactNode,
 } from "react";
-import { File, initialFiles, snowflake } from "../constants";
+import { File, initialFiles } from "../constants";
 import toast from "react-hot-toast";
 import { parseBinarySif } from "../utils";
 const { ipcRenderer } = window.require("electron");
 const fs = window.require("fs");
 
-// import {ipcRenderer} from 'electron'
-// import { convertToBinary, parseBinarySif } from "../utils";
-// import axios from "axios";
-// import toast from "react-hot-toast";
-// import { SnowFlakeConfig, Snowflake } from "snowflake-uid";
 interface FilesContextValue {
   files: File[];
   setFiles: React.Dispatch<React.SetStateAction<File[]>>;
