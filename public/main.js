@@ -28,7 +28,50 @@ function createWindow() {
     private: false,
   });
 
-  autoUpdater.checkForUpdatesAndNotify();
+  // let updateWin;
+  ipcMain.on("check-update", (event) => {
+    let updateWin = new BrowserWindow({
+      width: 350,
+      height: 350,
+      alwaysOnTop: true,
+      resizable: false,
+      titleBarStyle: "hidden",
+      backgroundColor: "#212529",
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+        enableRemoteModule: true,
+        devTools: true,
+      },
+    });
+
+    const updaterURL = `file://${path.join(__dirname, "./updater/index.html")}`;
+    updateWin.loadURL(updaterURL);
+    autoUpdater.checkForUpdates();
+
+    ipcMain.on("request-update-info", (event) => {
+      autoUpdater.on("update-available", (info) => {
+        event.sender.send("update-available", info);
+      });
+      autoUpdater.on("update-not-available", (info) => {
+        event.sender.send("update-not-available", info);
+      });
+
+      autoUpdater.on("update-downloaded", (info) => {
+        event.sender.send("update-downloaded", info);
+      });
+      autoUpdater.on("checking-for-update", (info) => {
+        event.sender.send("checking-for-update", info);
+      });
+      autoUpdater.on("error", (error, message) => {
+        event.sender.send("error", error, message);
+      });
+    });
+
+    ipcMain.on("close-updater", () => {
+      updateWin.close();
+    });
+  });
 
   win.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
@@ -54,8 +97,6 @@ function createWindow() {
     win.setMinimumSize(700, 600);
     setTimeout(() => event.sender.send("editor-loaded-finished"), 1000);
   });
-
-  ipcMain.on("toggle-title-bar", (event, show) => {});
 
   // Handle open-file events in the production environment
   app.on("open-file", (event, filePath) => {

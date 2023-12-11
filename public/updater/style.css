@@ -1,0 +1,91 @@
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-family: sans-serif;
+}
+
+:root {
+  --main: #212529;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body {
+  background-color: var(--main);
+  color: #fff;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.drag {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+.loader-container {
+  -webkit-app-region: drag;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999999999;
+  background-color: var(--main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.pre-loader {
+  width: 40px;
+  height: 60px;
+  color: #a9a9a9;
+  position: relative;
+}
+
+.update-info {
+  margin-top: 40px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.pre-loader::before,
+.pre-loader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  clip-path: polygon(0 0, 100% 0, 100% 67%, 50% 67%, 50% 34%, 0 34%);
+  animation: sp7 2s infinite;
+}
+.pre-loader::after {
+  --s: -1, -1;
+}
+
+@keyframes sp7 {
+  0%,
+  10% {
+    transform: scale(var(--s, 1)) translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: scale(var(--s, 1)) translate(0, -15px) rotate(0deg);
+  }
+  66% {
+    transform: scale(var(--s, 1)) translate(10px, -15px) rotate(-90deg);
+  }
+  90%,
+  100% {
+    transform: scale(var(--s, 1)) translate(10px, -10px) rotate(-90deg);
+  }
+}

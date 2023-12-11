@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Updater</title>
+  </head>
+  <body>
+    <div class="loader-container drag">
+      <div class="pre-loader"></div>
+      <p class="update-info" id="update-info">Ch</p>
+    </div>
+
+    <script>
+      const updateInfo = document.getElementById("update-info");
+      const { ipcRenderer } = window.require("electron");
+
+      function setText(text) {
+        updateInfo.innerHTML = "";
+        updateInfo.append(text);
+      }
+
+      ipcRenderer.send("request-update-info");
+      ipcRenderer.on("update-available", (info) => {
+        setText(`Downloading Updates ${String(event)}`);
+      });
+      ipcRenderer.on("update-not-available", (info) => {
+        setText(`Downloading Not Available ${String(event)}`);
+      });
+      ipcRenderer.on("update-downloaded", (info) => {
+        setText(`Updates Downloaded ${String(event)}`);
+      });
+      ipcRenderer.on("checking-for-update", (info) => {
+        setText(`Checking for updates ${String(event)}`);
+      });
+      ipcRenderer.on("error", (error, message) => {
+        setText(`Update error ${String(message)} ${String(error)}`);
+      });
+    </script>
+  </body>
+</html>

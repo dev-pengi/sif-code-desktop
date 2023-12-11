@@ -59,6 +59,11 @@
     "productName": "Sif Code",
     "extends": null,
     "appId": "com.sifedine.code",
+    "publish": {
+      "provider": "github",
+      "url": "https://github.com/dev-pengi/sif-code-desktop",
+      "releaseType": "release"
+    },
     "fileAssociations": [
       {
         "ext": "sif",
@@ -68,8 +73,13 @@
       }
     ],
     "win": {
-      "target": "msi",
-      "icon": "public/icon.ico"
+      "target": "nsis",
+      "icon": "public/icon.ico",
+      "publish": {
+        "provider": "github",
+        "url": "https://github.com/dev-pengi/sif-code-desktop",
+        "releaseType": "release"
+      }
     },
     "files": [
       "dist/**/*",
