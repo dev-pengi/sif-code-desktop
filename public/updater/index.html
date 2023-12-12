@@ -27,12 +27,10 @@
       });
       ipcRenderer.on("update-not-available", (info) => {
         setText(`Update Not Available`);
-        setTimeout(() => {
-          ipcRenderer.send("close-updater");
-        }, 1500);
+        ipcRenderer.send("close-updater");
       });
       ipcRenderer.on("update-downloaded", (info) => {
-        setText(`Updates Downloaded, closing app in 3 seconds`);
+        setText(`Updates Downloaded`);
         ipcRenderer.send("update-close-app");
       });
       ipcRenderer.on("checking-for-update", (info) => {
@@ -40,9 +38,7 @@
       });
       ipcRenderer.on("error", (error, message) => {
         setText(`Update Not Available`);
-        setTimeout(() => {
-          ipcRenderer.send("close-updater");
-        }, 1500);
+        ipcRenderer.send("close-updater");
       });
     </script>
   </body>
