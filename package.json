@@ -57,6 +57,7 @@
   },
   "build": {
     "productName": "Sif Code",
+    "artifactName": "${name}.${ext}",
     "extends": null,
     "appId": "com.sifedine.code",
     "fileAssociations": [
