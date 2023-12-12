@@ -1,4 +1,11 @@
-const { app, BrowserWindow, Menu, ipcMain, shell } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  Menu,
+  ipcMain,
+  shell,
+  dialog,
+} = require("electron");
 const { autoUpdater } = require("electron-updater");
 
 require("@electron/remote/main").initialize();
@@ -29,60 +36,25 @@ function createWindow() {
   });
 
   const checkForUpdates = () => {
-    let updateWin = new BrowserWindow({
-      width: 350,
-      height: 350,
-      alwaysOnTop: true,
-      resizable: false,
-      titleBarStyle: "hidden",
-      backgroundColor: "#212529",
-      maximizable: false,
-      webPreferences: {
-        nodeIntegration: true,
-        contextIsolation: false,
-        enableRemoteModule: true,
-        devTools: true,
-      },
-    });
-
-    const updaterURL = `file://${path.join(__dirname, "./updater/index.html")}`;
-    updateWin.loadURL(updaterURL);
-
-    ipcMain.on("request-update-info", (event) => {
-      autoUpdater.checkForUpdates();
-      ipcMain.removeAllListeners("request-update-info");
-      ipcMain.removeAllListeners("close-updater");
-      ipcMain.removeAllListeners("update-close-app");
-
-      ipcMain.on("request-update-info", (event) => {
-        autoUpdater.checkForUpdates();
-        autoUpdater.on("update-available", (info) => {
-          event.sender.send("update-available", info);
+    autoUpdater.checkForUpdates();
+    autoUpdater.on("update-downloaded", (info) => {
+      console.log(info);
+      dialog
+        .showMessageBox(win, {
+          type: "info",
+          title: "Update Downloaded",
+          message: "You need to restart the app to apply the update",
+          buttons: ["Close app", "Cancel"],
+          noLink: true,
+        })
+        .then((value) => {
+          if (value.response === 0) {
+            win.destroy();
+          }
         });
-        autoUpdater.on("update-not-available", (info) => {
-          event.sender.send("update-not-available", info);
-        });
-        autoUpdater.on("update-downloaded", (info) => {
-          event.sender.send("update-downloaded", info);
-        });
-        autoUpdater.on("checking-for-update", (info) => {
-          event.sender.send("checking-for-update", info);
-        });
-        autoUpdater.on("error", (error, message) => {
-          event.sender.send("error", error, message);
-        });
-      });
-    });
-
-    ipcMain.on("close-updater", () => {
-      updateWin.close();
-    });
-
-    ipcMain.on("update-close-app", () => {
-      updateWin.destroy();
-      win.destroy();
     });
   };
+
   checkForUpdates();
   ipcMain.on("check-update", (event) => {
     checkForUpdates();
