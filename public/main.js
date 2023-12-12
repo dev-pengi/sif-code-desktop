@@ -28,7 +28,7 @@ function createWindow() {
     private: false,
   });
 
-  const checkForUpdates = (isFirst = false) => {
+  const checkForUpdates = () => {
     let updateWin = new BrowserWindow({
       width: 350,
       height: 350,
@@ -36,6 +36,7 @@ function createWindow() {
       resizable: false,
       titleBarStyle: "hidden",
       backgroundColor: "#212529",
+      maximizable: false,
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
