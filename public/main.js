@@ -37,8 +37,8 @@ function createWindow() {
 
   const checkForUpdates = () => {
     autoUpdater.checkForUpdates();
-    autoUpdater.on("update-downloaded", (info) => {
-      console.log(info);
+    autoUpdater.once("update-downloaded", (info) => {
+      autoUpdater.removeAllListeners("update-downloaded");
       dialog
         .showMessageBox(win, {
           type: "info",
