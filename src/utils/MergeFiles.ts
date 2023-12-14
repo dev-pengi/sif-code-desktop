@@ -159,8 +159,9 @@ const mergeFile = async (
   devMode: boolean = true
 ) => {
   const htmlFile = getHtmlFile(files);
-  const jsFiles = getJsFiles(files);
+  if (!htmlFile) throw new Error("invalid html file!");
 
+  const jsFiles = getJsFiles(files);
   const cssFiles = await getCssFiles(files);
 
   const result = `
@@ -173,19 +174,19 @@ const mergeFile = async (
                 cssFiles
                   ? `
                 <style>
-                    ${cssFiles?.merged}
+                    ${cssFiles.merged}
                 </style>
                 `
                   : ""
               }
           </head>
           <body>
-              ${htmlFile?.content}
+              ${htmlFile.content}
               ${
                 jsFiles
                   ? `
                 <script>
-                    ${jsFiles?.merged}
+                    ${jsFiles.merged}
                 </script>
                 `
                   : ""
