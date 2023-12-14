@@ -17,6 +17,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 350,
     height: 350,
+    maximizable: false,
     titleBarStyle: "hidden",
     backgroundColor: "#212529",
     webPreferences: {
@@ -78,11 +79,12 @@ function createWindow() {
 
   win.loadURL(currentURL);
 
-  ipcMain.on("editor-loaded", (event, arg) => {
+  ipcMain.on("editor-loaded", (event) => {
     win.setSize(900, 650);
+    win.setMaximizable(true);
     win.maximize();
     win.setMinimumSize(700, 600);
-    setTimeout(() => event.sender.send("editor-loaded-finished"), 1000);
+    setTimeout(() => event.sender.send("editor-loaded-finished"), 800);
   });
 
   if (process.argv.length >= 2) {
@@ -110,7 +112,7 @@ function createWindow() {
 app.on("ready", createWindow);
 
 app.on("window-all-closed", function () {
-  if (process.platform !== "android") {
+  if (process.platform !== "darwin") {
     app.quit();
   }
 });

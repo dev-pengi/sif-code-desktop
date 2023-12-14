@@ -78,17 +78,17 @@ const getIframeScripts = (): string => {
 function resolveNamingConflicts(files: File[]): File[] {
   const nameCountMap: Record<string, number> = {};
 
-  // Count occurrences of each name
   files.forEach((file) => {
     nameCountMap[file.name] = (nameCountMap[file.name] || 0) + 1;
   });
 
-  // Resolve conflicts by appending a number to duplicate names
   return files.map((file) => {
     if (nameCountMap[file.name] > 1) {
-      const fileName = file.name.split('.')[0]
-      const fileExtension = file.name.split('.')[1]
-      const newName = `${fileName}_${nameCountMap[file.name]--}.${fileExtension}`;
+      const fileName = file.name.split(".")[0];
+      const fileExtension = file.name.split(".")[1];
+      const newName = `${fileName}_${nameCountMap[
+        file.name
+      ]--}.${fileExtension}`;
       return { ...file, name: newName };
     }
     return file;
@@ -190,8 +190,6 @@ const mergeFile = async (
                 `
                   : ""
               }
-
-              
               ${
                 devMode
                   ? `<script>
