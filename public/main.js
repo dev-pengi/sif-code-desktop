@@ -85,14 +85,6 @@ function createWindow() {
     setTimeout(() => event.sender.send("editor-loaded-finished"), 1000);
   });
 
-  // Handle open-file events in the production environment
-  app.on("open-file", (event, filePath) => {
-    event.preventDefault();
-    win.webContents.send("file-path", filePath);
-    ipcMain.on("request-file-path", (event) => {
-      event.sender.send("file-path", filePath);
-    });
-  });
   if (process.argv.length >= 2) {
     let filePath = process.argv[1];
     win.webContents.send("file-path", filePath);

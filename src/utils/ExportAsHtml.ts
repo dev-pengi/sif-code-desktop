@@ -1,5 +1,5 @@
 import { saveAs } from "file-saver";
-import { File } from "../../constants";
+import { File } from "../constants";
 import { mergeFile } from ".";
 
 const ExportAsHtml = async (files: File[], projectName: string) => {

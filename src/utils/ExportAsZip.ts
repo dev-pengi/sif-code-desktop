@@ -1,6 +1,6 @@
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import { File } from "../../constants";
+import { File } from "../constants";
 
 const downloadFilesAsZip = (files: any[], folderName: string) => {
   const zip = new JSZip();

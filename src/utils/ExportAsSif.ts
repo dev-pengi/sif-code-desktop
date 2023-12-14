@@ -1,5 +1,5 @@
 import { saveAs } from "file-saver";
-import { File } from "../../constants";
+import { File } from "../constants";
 
 const exportAsSif = (files: File[], projectName: string): void => {
   const binaryData = convertToBinary(files, projectName);
